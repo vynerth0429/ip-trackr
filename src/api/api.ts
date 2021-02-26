@@ -71,10 +71,54 @@ export async function del<T>(
   return data;
 };
 
+const convertJsonToParams = (
+  json: {
+    [dynamic: string]: unknown
+  }
+): string => {
+  let jsonString: string = '';
+
+  if (json) {
+    for (const key in json) {
+      if (json.hasOwnProperty(key)) {
+        const value = json[key];
+
+        if (value === undefined || value === null) {
+          continue;
+        }
+
+        if (jsonString.length > 0) {
+          jsonString += '&';
+        }
+
+        if (Array.isArray(value)) {
+          for (let index = 0; index < value.length; index++) {
+            const item = value[index];
+            if (item === undefined || item === null) {
+              continue;
+            }
+
+            if (index > 0) {
+              jsonString += '&';
+            }
+
+            jsonString += `${key}=${item}`;
+          }
+        } else {
+          jsonString += `${key}=${value}`;
+        }
+      }
+    }
+  }
+
+  return jsonString;
+};
+
 export const API = {
   get,
   post,
   patch,
   put,
   del,
+  convertJsonToParams,
 };

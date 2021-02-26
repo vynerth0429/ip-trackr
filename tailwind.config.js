@@ -24,6 +24,15 @@ module.exports = {
       },
       zIndex: {
         '9999': 9999
+      },
+      height: {
+        '500': '500px',
+      },
+      minHeight: {
+        '40': '10rem'
+      },
+      flex: {
+        '40': '40%'
       }
     },
   },

@@ -5,30 +5,59 @@ import {
   TileLayer,
   Marker,
   Popup,
-} from 'react-leaflet'
+  useMap,
+} from 'react-leaflet';
 
-function MapComp() {
-  const position = {
-    lat: 51.505,
-    lng: -0.09,
-  };
+import { TGeo, TGeoPosition } from '../types/geo-types';
+
+function MyMapComponent({ lat, lng }: TGeoPosition) {
+  const map = useMap();
+
+  const location: TGeoPosition = {
+    lat: lat,
+    lng: lng,
+  }
+
+  map.setView(location, 13);
+  return null;
+}
+
+interface ComponentProps {
+  geo: TGeo,
+}
+
+function MapComp(props: ComponentProps) {
+  const [location, setLocation] = React.useState<TGeoPosition>()
+
+  React.useEffect(() => {
+    const loc: TGeoPosition = {
+      lat: props.geo.location.lat,
+      lng: props.geo.location.lng,
+    }
+
+    setLocation(loc);
+  }, [props.geo])
 
   return (
     <div className="h-full mapid">
       <MapContainer
-        center={[51.505, -0.09]}
+        center={[props.geo.location.lat, props.geo.location.lng] }
         zoom={13}
-        scrollWheelZoom={false}
+        scrollWheelZoom={true}
         className="h-full">
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Marker position={[51.505, -0.09]}>
+        <Marker position={[props.geo.location.lat, props.geo.location.lng]}>
           <Popup>
             A pretty CSS3 popup. <br /> Easily customizable.
           </Popup>
         </Marker>
+        {
+          location && <MyMapComponent lat={location.lat} lng={location.lng}/>
+        }
+
       </MapContainer>
     </div>
   )
