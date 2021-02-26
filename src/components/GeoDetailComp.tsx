@@ -27,7 +27,7 @@ function GeoDetailComp(props: ComponentProps) {
           value={props.geo.location.region + ', ' + props.geo.location.city + ' test 1 t2'}/>
       </div>
 
-      <div className="self-stretch py-2 md:hidden">
+      <div className="self-stretch py-2 md:hidden lg:block">
         <div className="w-px h-full bg-gray-200"></div>
       </div>
 
