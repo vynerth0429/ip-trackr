@@ -23,6 +23,7 @@ module.exports = {
         }
       },
       zIndex: {
+        '5000': 5000,
         '9999': 9999
       },
       height: {

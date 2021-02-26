@@ -1,4 +1,5 @@
 import React from 'react';
+import RingLoader from "react-spinners/RingLoader";
 
 import IMGHeader from './assets/images/pattern-bg.png';
 
@@ -45,7 +46,7 @@ function App() {
   }, [])
 
   return (
-    <div className="h-auto md:h-screen flex flex-col justify-between">
+    <div className="relative h-auto md:h-screen flex flex-col justify-between">
       <div
         className="relative h-500 md:max-h-80 md:h-80 flex-none"
         style={{
@@ -56,7 +57,7 @@ function App() {
           // backgroundSize: 'auto'
         }}>
 
-        <div className="absolute z-9999 lg:-bottom-20 left-0 right-0 px-4 flex flex-col items-center">
+        <div className="absolute z-5000 lg:-bottom-20 left-0 right-0 px-4 flex flex-col items-center">
           <div className="text-center mb-8 mt-16 lg:mt-0">
             <span className="text-3xl font-medium text-white">
               IP Address Tracker
@@ -83,6 +84,13 @@ function App() {
           geo ? <MapComp geo={geo}/> : <div className="h-full bg-gray-400"></div>
         }
       </div>
+
+      {
+        fetching &&
+        <div className="absolute top-0 left-0 right-0 h-screen z-9999 bg-gray-500 opacity-50 flex items-center justify-center">
+          <RingLoader color={'hsl(0, 0%, 17%)'} loading={true} size={150} />
+        </div>
+      }
     </div>
   );
 }
