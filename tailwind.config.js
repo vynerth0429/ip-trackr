@@ -21,6 +21,9 @@ module.exports = {
         screens: {
           '2xl': "1280px",
         }
+      },
+      zIndex: {
+        '9999': 9999
       }
     },
   },

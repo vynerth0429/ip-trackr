@@ -14,3 +14,26 @@
     box-sizing: border-box;
   }
 }
+
+#mapid {
+  height: 100%;
+}
+
+.location__container {
+  &::before {
+    position: absolute;
+  }
+
+  &::after {
+    position: absolute;
+  }
+
+  &::before,
+  &::after {
+    border-radius: 50%;
+    position: absolute;
+    content: ' ';
+    display: block;
+    bottom: 0,
+  }
+}
