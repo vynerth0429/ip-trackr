@@ -24,7 +24,7 @@ function GeoDetailComp(props: ComponentProps) {
       <div className="md:ml-8 md:flex-40 lg:flex-1 lg:ml-0 ">
         <GeoItemComp
           label={'Location'}
-          value={props.geo.location.region + ', ' + props.geo.location.city + ' test 1 t2'}/>
+          value={props.geo.location.region + ', ' + props.geo.location.city}/>
       </div>
 
       <div className="self-stretch py-2 md:hidden lg:block">
